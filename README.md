@@ -1,4 +1,6 @@
- # This important aspect of using a trigger (after update) when updating the same trigger object.
+
+  # maximum trigger depth exceeded
+ ### This important aspect of using a trigger (after update) when updating the same trigger object.
 when we wirte trigger after update to updating the same trigger object.
 
 we shound be use 
