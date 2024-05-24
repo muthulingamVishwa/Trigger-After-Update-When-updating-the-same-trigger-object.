@@ -13,7 +13,7 @@ public class opp {
         }
         isTriggerExecuted = True;
        
-        ## // logic here
+         // logic here
                    
     }  
         isTriggerExecuted = false;
