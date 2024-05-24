@@ -2,7 +2,6 @@ trigger OpportunityTrigger on Opportunity (after insert ,after update) {
     if(Trigger.isInsert){
         if(Trigger.isafter){
               opp.amount(trigger.new);
-            OpportunityT.ClosedDate(trigger.new,trigger.oldmap);
         }
     }
     else if(Trigger.isUpdate){
