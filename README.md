@@ -52,6 +52,9 @@ for(opportunity opp:[Select id,AccountId,Total_Opportunity_Amount__c From opport
     
 }
 
+
 if(!opport.isEmpty()){
+ 
     update opport;
+
 }
