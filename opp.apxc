@@ -1,0 +1,47 @@
+public class opp {
+    
+    public static Boolean isTriggerExecuted = false;
+
+    public static void amount(list<Opportunity> opplist){
+        if(isTriggerExecuted){
+            return;
+        }
+        isTriggerExecuted = True;
+       
+        
+        set<id> AccountId = new set<id>();
+       
+
+        for(Opportunity opp: opplist){
+            AccountId.add(opp.AccountId);
+          
+        }
+        
+         map<id,Decimal> updateopp = new map<id,Decimal>();
+        
+        for(AggregateResult Result:[Select AccountId,
+                                    sum(Amount) Total
+                                    From opportunity 
+                                    where AccountId in :AccountId
+                                    Group by AccountID]){
+            
+            updateopp.put((id)Result.get('AccountId'),(Decimal)Result.get('Total'));
+        }
+          list<Opportunity>  opptupdate = new list<Opportunity>();
+        for(Opportunity opp: [Select id,
+                              AccountID,
+                              Total_Opportunity_Amount__c From opportunity
+                              Where AccountId in :AccountID ]) {
+            if(updateopp.containsKey(opp.AccountId)){
+                opp.Total_Opportunity_Amount__c = updateopp.get(opp.AccountId);
+                 opptupdate.add(opp);
+            }
+        }
+            if(!opptupdate.isEmpty()){
+                update opptupdate;
+                   
+    }  
+        isTriggerExecuted = false;
+}
+         
+}
