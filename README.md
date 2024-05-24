@@ -22,3 +22,36 @@ public class opp {
 }
          
 }
+
+
+# logic here
+
+
+
+set<id> AccountID =new Set<id>();
+for(opportunity opp:[Select id,AccountId,Total_Opportunity_Amount__c From opportunity Where AccountID !=null]){
+    
+    AccountID.add(opp.AccountId);
+    
+}
+ map<id,Decimal> updateamount=new map<id,Decimal>(); 
+for(AggregateResult Result:[Select AccountID,Sum(Amount)total From opportunity Where AccountId in: AccountID Group by AccountId]){
+     
+    updateamount.put((id)Result.get('AccountID'),(Decimal)Result.get('total'));
+    
+    
+}
+list<opportunity>  opport=new list<opportunity>();
+for(opportunity opp:[Select id,AccountId,Total_Opportunity_Amount__c From opportunity Where AccountID !=null]){
+    
+    if(updateamount.containsKey(opp.AccountId)){
+           opp.Total_Opportunity_Amount__c=updateamount.get(opp.AccountId);
+           
+    }
+     opport.add(opp);
+    
+}
+
+if(!opport.isEmpty()){
+    update opport;
+}
