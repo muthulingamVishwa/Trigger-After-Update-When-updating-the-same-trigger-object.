@@ -4,7 +4,7 @@
 when we wirte trigger after update to updating the same trigger object.
 
 we shound be use 
-'''jsx
+```jsx
 public class opp {
     
     public static Boolean isTriggerExecuted = false;
@@ -22,13 +22,12 @@ public class opp {
 }
          
 }
-'''
-
+```
 
 # logic here
 
 
-
+```jsx
 set<id> AccountID =new Set<id>();
 for(opportunity opp:[Select id,AccountId,Total_Opportunity_Amount__c From opportunity Where AccountID !=null]){
     
@@ -59,3 +58,4 @@ if(!opport.isEmpty()){
     update opport;
 
 }
+```
