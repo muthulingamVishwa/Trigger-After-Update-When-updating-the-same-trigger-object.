@@ -4,7 +4,7 @@
 when we wirte trigger after update to updating the same trigger object.
 
 we shound be use 
-
+'''jsx
 public class opp {
     
     public static Boolean isTriggerExecuted = false;
@@ -22,6 +22,7 @@ public class opp {
 }
          
 }
+'''
 
 
 # logic here
